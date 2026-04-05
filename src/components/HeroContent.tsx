@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 export default function HeroContent() {
   return (
     <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
-      <div className="max-w-3xl mx-auto text-center px-6">
+      <div className="max-w-4xl mx-auto text-center px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -20,9 +20,9 @@ export default function HeroContent() {
           transition={{ duration: 1, delay: 0.7 }}
           className="font-display font-light text-5xl md:text-7xl leading-tight mb-6 text-glow"
         >
-          <span className="text-foreground">Reenvision How</span>
+          <span className="text-foreground">Reenvisioning Global</span>
           <br />
-          <span className="text-primary">Places Connect</span>
+          <span className="text-primary">Economic Geography</span>
         </motion.h1>
 
         <motion.p
@@ -31,9 +31,9 @@ export default function HeroContent() {
           transition={{ duration: 1, delay: 0.9 }}
           className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 font-body leading-relaxed"
         >
-          Scale-independent economic intelligence combining global trade models,
-          multimodal transport networks, and granular population dynamics —
-          revealing how shocks propagate from global to local.
+          Economic intelligence linking global trade
+          and transport models to national macroeconomic CGE, quantitative regional models, and local AI population embeddings —
+          trace shocks from global to local, plan infrastructure at any scale, simulate economic policies, and reenvision your World — using simple chat or expert interfaces to our platform.
         </motion.p>
 
         <motion.div
