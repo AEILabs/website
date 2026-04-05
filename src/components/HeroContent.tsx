@@ -3,7 +3,17 @@ import { motion } from "framer-motion";
 export default function HeroContent() {
   return (
     <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
-      <div className="max-w-4xl mx-auto text-center px-6">
+      {/* Radial glow beam behind the text */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div
+          className="w-[700px] h-[420px] rounded-full"
+          style={{
+            background: "radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.1) 60%, transparent 85%)",
+            filter: "blur(60px)",
+          }}
+        />
+      </div>
+      <div className="max-w-4xl mx-auto text-center px-6 relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

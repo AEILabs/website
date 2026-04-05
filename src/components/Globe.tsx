@@ -95,7 +95,7 @@ function OceanSphere() {
   return (
     <mesh>
       <sphereGeometry args={[2, 64, 64]} />
-      <meshPhongMaterial color="#0a1628" shininess={15} specular="#1a3a6a" />
+      <meshPhongMaterial color="#050d1a" shininess={10} specular="#0f2040" />
     </mesh>
   );
 }
@@ -104,28 +104,44 @@ function LandSphere({ texture }: { texture: THREE.CanvasTexture }) {
   return (
     <mesh>
       <sphereGeometry args={[2.001, 64, 64]} />
-      <meshPhongMaterial
+      <meshBasicMaterial
         map={texture}
         transparent
         alphaTest={0.05}
-        shininess={5}
-        specular="#0a1a0a"
       />
     </mesh>
   );
 }
 
 function AtmosphereGlow() {
+  const layers = useMemo(() => {
+    const count = 32;
+    const minR = 2.01;
+    const maxR = 2.35;
+    const peakOpacity = 0.08;
+    return Array.from({ length: count }, (_, i) => {
+      const t = i / (count - 1);
+      const r = minR + (maxR - minR) * t;
+      const opacity = peakOpacity * Math.exp(-8 * t);
+      return { r, opacity };
+    });
+  }, []);
+
   return (
-    <mesh>
-      <sphereGeometry args={[2.15, 64, 64]} />
-      <meshBasicMaterial
-        color={PRIMARY_BLUE}
-        transparent
-        opacity={0.04}
-        side={THREE.BackSide}
-      />
-    </mesh>
+    <>
+      {layers.map(({ r, opacity }) => (
+        <mesh key={r}>
+          <sphereGeometry args={[r, 48, 48]} />
+          <meshBasicMaterial
+            color={PRIMARY_BLUE}
+            transparent
+            opacity={opacity}
+            side={THREE.BackSide}
+            depthWrite={false}
+          />
+        </mesh>
+      ))}
+    </>
   );
 }
 
@@ -434,7 +450,7 @@ function FallbackGlobe() {
     <group ref={groupRef}>
       <mesh>
         <sphereGeometry args={[2, 64, 64]} />
-        <meshPhongMaterial color="#0a1628" shininess={15} specular="#1a3a6a" />
+        <meshPhongMaterial color="#050d1a" shininess={10} specular="#0f2040" />
       </mesh>
       <mesh>
         <sphereGeometry args={[2.15, 64, 64]} />
@@ -482,7 +498,7 @@ function GlobeScene({ countries, ports, cities, routes }: GlobeSceneProps) {
       <LandSphere texture={landTexture} />
       <AtmosphereGlow />
       <WireframeGrid />
-      <CountryBorders features={countries.features} />
+      {/* <CountryBorders features={countries.features} /> */}
       {routes.features.length > 0 && (
         <MaritimeRoutes features={routes.features} />
       )}

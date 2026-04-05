@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import type { GeoFeatureCollection, CountryFeature } from '@/types/geo';
 
-const LAND_COLOR = '#1c2e1c';
-const LAND_STROKE_COLOR = '#2d4a2d';
+const LAND_COLOR = '#222426'; // '#1c1d1f'
+const LAND_STROKE_COLOR = '#3d6b3f';
 
 export function generateGlobeTexture(
   countries: GeoFeatureCollection<CountryFeature>,
