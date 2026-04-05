@@ -8,8 +8,8 @@ export default function HeroContent() {
         <div
           className="w-[700px] h-[420px] rounded-full"
           style={{
-            background: "radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.1) 60%, transparent 85%)",
-            filter: "blur(60px)",
+            background: "radial-gradient(ellipse at 78% 50%, rgba(74,127,212,0.38) 0%, rgba(74,127,212,0.16) 25%, transparent 65%)",
+            filter: "blur(35px)",
           }}
         />
       </div>
