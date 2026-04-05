@@ -117,7 +117,7 @@ function AtmosphereGlow() {
   const layers = useMemo(() => {
     const count = 32;
     const minR = 2.01;
-    const maxR = 2.35;
+    const maxR = 2.55;
     const peakOpacity = 0.08;
     return Array.from({ length: count }, (_, i) => {
       const t = i / (count - 1);

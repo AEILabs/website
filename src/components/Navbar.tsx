@@ -56,7 +56,7 @@ export default function Navbar() {
 
         {/* CTA */}
         <button className="px-4 py-2 text-sm font-body font-medium rounded-md bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors duration-200">
-          Request Access
+          Request Demo
         </button>
       </div>
     </motion.nav>
