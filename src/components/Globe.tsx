@@ -227,9 +227,9 @@ function MaritimeRoutes({ features }: { features: MaritimeRouteFeature[] }) {
   return (
     <lineSegments geometry={geometry}>
       <lineBasicMaterial
-        color="#1a4a8a"
+        color="#2a6abf"
         transparent
-        opacity={0.3}
+        opacity={0.5}
         depthTest
         depthWrite={false}
       />
@@ -243,9 +243,9 @@ function MaritimeRoutes({ features }: { features: MaritimeRouteFeature[] }) {
 
 function PortMarkers({ features }: { features: PortFeature[] }) {
   const mesh = useMemo(() => {
-    const geo = new THREE.SphereGeometry(0.012, 6, 6);
+    const geo = new THREE.SphereGeometry(0.007, 6, 6);
     const mat = new THREE.MeshBasicMaterial({
-      color: new THREE.Color(ACCENT_AMBER),
+      color: new THREE.Color(PRIMARY_BLUE),
       transparent: true,
       opacity: 0.85,
     });
@@ -274,7 +274,7 @@ function CityMarkers({ features }: { features: CityFeature[] }) {
   const mesh = useMemo(() => {
     const geo = new THREE.SphereGeometry(1, 6, 6); // unit sphere, scaled per instance
     const mat = new THREE.MeshBasicMaterial({
-      color: new THREE.Color(PRIMARY_BLUE),
+      color: new THREE.Color("#f0a030"),
       transparent: true,
       opacity: 0.75,
     });
@@ -283,14 +283,15 @@ function CityMarkers({ features }: { features: CityFeature[] }) {
 
     features.forEach((f, i) => {
       const [lon, lat] = f.geometry.coordinates;
-      const scale = 0.008 + (f.properties.rank_max / 20) * 0.012;
-      dummy.position.copy(latLonToVec3(lat, lon, 2.022));
+      const scale = 0.004 + (f.properties.rank_max / 20) * 0.006;
+      dummy.position.copy(latLonToVec3(lat, lon, 2.026));
       dummy.scale.setScalar(scale);
       dummy.updateMatrix();
       iMesh.setMatrixAt(i, dummy.matrix);
     });
 
     iMesh.instanceMatrix.needsUpdate = true;
+    iMesh.renderOrder = 1;
     return iMesh;
   }, [features]);
 
