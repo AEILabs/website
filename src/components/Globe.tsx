@@ -520,7 +520,7 @@ export default function Globe() {
   return (
     <div className="absolute inset-0 w-full h-full">
       <Canvas
-        camera={{ position: [0, 2.4, 4.6], fov: 45 }}
+        camera={{ position: [0, 2.4, 5], fov: 43 }}
         gl={{ antialias: true, alpha: true }}
         style={{ background: "transparent" }}
       >
