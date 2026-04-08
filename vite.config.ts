@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => ({
   base: mode === "production" ? "/AEILabs/" : "/",
   server: {
     host: "::",
-    port: 8080,
+    port: parseInt(process.env.PORT || '8080'),
     hmr: {
       overlay: false,
     },
