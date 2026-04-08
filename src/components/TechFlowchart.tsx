@@ -320,7 +320,7 @@ function renderBullet(text: string): React.ReactNode {
   return parts.map((part, i) => {
     const m = part.match(/^<b>(.*?)<\/b>$/);
     return m
-      ? <span key={i} className="text-primary font-semibold">{m[1]}</span>
+      ? <span key={i} className="text-white/80 font-semibold">{m[1]}</span>
       : <span key={i}>{part}</span>;
   });
 }
