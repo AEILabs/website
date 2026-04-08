@@ -72,7 +72,7 @@ const NODES: NodeDef[] = [
   },
   {
     id: "transport", svgX: 825, svgY: 340,
-    category: "Transport",
+    category: "Global Transport",
     line1: "Global Multimodal Transport",
     line2: "(5 Modes, ~4,000 Centroids)",
     detail: "A global multimodal transport model covering five modes: road, rail, inland waterway, maritime, and air. Resolves trade flows onto 4 000 spatial centroids worldwide, mapping observed and counterfactual freight and passenger flows along the physical network.",
@@ -88,7 +88,7 @@ const NODES: NodeDef[] = [
   },
   {
     id: "aether", svgX: 500, svgY: 720,
-    category: "Hyper-local Interpolation",
+    category: "Hyper-local Extrapolation",
     line1: "AlphaEarth Vector Embeddings",
     line2: "(10m Resolution, POI-Enriched)",
     detail: "AETHER (AlphaEarth-POI Enriched Representation Learning for Human-Centered Urban Analysis): 10m-resolution vector embeddings encoding the built environment, demographics, and economic activity for hyper-local welfare extrapolation.",
@@ -259,7 +259,7 @@ function DetailPanel({ node, onClose }: { node: NodeDef; onClose: () => void }) 
       <p className="text-xs text-white/55 leading-relaxed">{node.detail}</p>
 
       {/* Spacer between description and bullets */}
-      <div className="h-px bg-white/8 my-5" />
+      <div className="h-px bg-white/8 my-3" />
 
       <ul className="space-y-3">
         {node.bullets.map(b => (

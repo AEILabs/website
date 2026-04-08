@@ -31,7 +31,7 @@ export default function StarCanvas() {
         opacityMin,
         opacityMax,
         // Slower: full cycle every 4 – 20 s (0.08 – 0.4 rad/s × 2π ≈ 3 – 15 s period)
-        speed: Math.random() * 0.32 + 0.08,
+        speed: Math.random() * 0.32 + 0.5,
         phase: Math.random() * Math.PI * 2,
         r_ch: 225 - blue,
         g_ch: 225 - blue,
