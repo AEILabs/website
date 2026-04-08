@@ -1,15 +1,23 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import TechFlowchart from "@/components/TechFlowchart";
-import NetworkCanvas from "@/components/NetworkCanvas";
-// import StarCanvas from "@/components/StarCanvas"; // temporarily replaced by NetworkCanvas
+// import NetworkCanvas from "@/components/NetworkCanvas";
+// import StarCanvas from "@/components/StarCanvas";
 
 export default function Technology() {
   return (
     <>
-      {/* Network background — procedural maritime-style web, fades toward centre */}
-      <NetworkCanvas />
-      {/* <StarCanvas /> */}
+      {/* Wallpaper background */}
+      <div
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/wallpaper-earth.jpg')",
+          zIndex: 0,
+        }}
+      >
+        {/* Dark overlay to keep content legible */}
+        <div className="absolute inset-0" style={{ background: "rgba(8,12,28,0.72)" }} />
+      </div>
 
       <div className="relative min-h-screen" style={{ zIndex: 1 }}>
         <Navbar />
