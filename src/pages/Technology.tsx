@@ -42,7 +42,7 @@ export default function Technology() {
           >
             A fully integrated global economic intelligence stack — linking global
             trade and transport network models to national CGE and quantitative
-            regional models, extended by hyper-local population embeddings — with AI at its core.
+            regional models, extrapolated using hyper-local vector embeddings — with AI at its core.
           </motion.p>
         </section>
 
