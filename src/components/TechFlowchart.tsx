@@ -163,8 +163,9 @@ const EDGES: EdgeDef[] = [
 ];
 
 /* ─── SVG sub-components ──────────────────────────────────────── */
-const ARROW_STROKE = "rgba(255,255,255,0.30)";
-const AI_ARROW_STROKE = "rgba(74,127,212,0.65)";
+const MAGENTA = "220,50,180";                         // vivid magenta – AI elements only
+const ARROW_STROKE = "rgba(255,255,255,0.30)";        // regular arrows: white (unchanged)
+const AI_ARROW_STROKE = `rgba(${MAGENTA},0.65)`;
 const FF = "Inter, system-ui, sans-serif";
 
 const LBL_LINE_H = 13; // line height between tspan lines
@@ -256,16 +257,16 @@ function AINodeBox({ node, isActive, onClick }: { node: NodeDef; isActive: boole
       {/* Symmetric glow — same geometry as crisp outline; blur spreads equally inside and out */}
       <ellipse cx={cx} cy={cy} rx={HW} ry={HH}
                fill="none"
-               stroke={isActive ? "rgba(65,105,225,0.85)" : "rgba(74,127,212,0.55)"}
+               stroke={isActive ? `rgba(${MAGENTA},0.9)` : `rgba(${MAGENTA},0.50)`}
                strokeWidth={2}
                filter="url(#oval-glow)" />
       {/* Crisp oval outline on top */}
       <ellipse cx={cx} cy={cy} rx={HW} ry={HH}
-               fill={isActive ? "rgba(65,105,225,0.12)" : "rgba(3,8,20,0.96)"}
-               stroke={isActive ? "rgba(65,105,225,1)" : "rgba(74,127,212,0.90)"}
+               fill={isActive ? `rgba(${MAGENTA},0.10)` : "rgba(3,8,20,0.96)"}
+               stroke={isActive ? `rgba(${MAGENTA},1)` : `rgba(${MAGENTA},0.85)`}
                strokeWidth={isActive ? 2 : 1.5} />
       <text x={cx} y={cy - 21} textAnchor="middle" dominantBaseline="middle"
-            fontSize={9} fill="rgba(74,127,212,0.9)" fontFamily={FF} fontWeight="600" letterSpacing="1.5">
+            fontSize={9} fill={`rgba(${MAGENTA},0.85)`} fontFamily={FF} fontWeight="600" letterSpacing="1.5">
         {node.category.toUpperCase()}
       </text>
       <text x={cx} y={cy - 4} textAnchor="middle" dominantBaseline="middle"
@@ -394,10 +395,10 @@ export default function TechFlowchart() {
                   markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
             <path d="M0,0 L10,4 L0,8 z" fill="white" />
           </marker>
-          {/* Blue arrowhead for AI control edges */}
+          {/* Magenta arrowhead for AI control edges */}
           <marker id="ah-ai" markerUnits="userSpaceOnUse"
                   markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
-            <path d="M0,0 L10,4 L0,8 z" fill="rgba(74,127,212,0.9)" />
+            <path d="M0,0 L10,4 L0,8 z" fill={`rgba(${MAGENTA},0.9)`} />
           </marker>
           {/* Oval border glow — blurs the stroke into a soft blue halo */}
           <filter id="oval-glow" x="-25%" y="-60%" width="150%" height="220%">
