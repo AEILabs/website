@@ -51,6 +51,7 @@ interface NodeDef {
   line1: string; line2?: string;
   detail: string;
   bullets: string[];
+  note: string; // additional technical context shown below bullets
 }
 
 const NODES: NodeDef[] = [
@@ -61,22 +62,25 @@ const NODES: NodeDef[] = [
     line2: "(I-O Linkages, ~60 Sectors)",
     detail: "A new-generation Quantitative Trade Model with multi-sector input-output linkages covering the full global economy. Calibrated to GTAP/WIOD data, it resolves bilateral trade flows at the sector level and propagates policy shocks through international supply chains.",
     bullets: ["Gravity-based bilateral trade flows", "Multi-sector input-output linkages", "Policy shock simulation (tariffs, NTBs)", "Feeds national CGE via trade policy signals"],
+    note: "QTMs follow the structural gravity tradition of Eaton & Kortum (2002) and Caliendo & Parro (2015), combining CES preferences, iceberg trade costs, and Ricardian comparative advantage. The input-output extension allows tariff shocks to propagate upstream and downstream across sectors, capturing global value chain effects that single-sector models miss.",
   },
   {
     id: "cge", svgX: 175, svgY: 340,
     category: "National Models",
     line1: "National CGE Models",
     line2: "(SAM-based, Multi-Sector)",
-    detail: "Country-level Computable General Equilibrium models built on Social Accounting Matrices. Captures domestic production, factor markets, and institutional income flows — linked bidirectionally to the global trade model.",
-    bullets: ["SAM-based with activities, commodities, factors", "Fixed exchange rate closure", "Links to trade model via export/import shocks", "Calibrated for 50+ countries"],
+    detail: "Country-level Computable General Equilibrium models built on Social Accounting Matrices. Simultaneously clears goods, factor, and institutional accounts — capturing domestic production, household income, government flows, and the external balance.",
+    bullets: ["SAM-based: activities, commodities, factors, institutions", "Fixed exchange rate closure", "Links to trade model via export/import shocks", "Calibrated for 50+ countries"],
+    note: "The Social Accounting Matrix provides the circular-flow accounting structure linking firms, households, government, and the rest of the world. A fixed exchange rate closure is standard for pegged-currency economies, with foreign savings adjusting to clear the external account. Factor market closures determine whether capital and labor are mobile across sectors between periods.",
   },
   {
     id: "transport", svgX: 825, svgY: 340,
     category: "Global Transport",
     line1: "Global Multimodal Transport",
     line2: "(5 Modes, ~4,000 Centroids)",
-    detail: "A global multimodal transport model covering five modes: road, rail, inland waterway, maritime, and air. Resolves trade flows onto 4 000 spatial centroids worldwide, mapping observed and counterfactual freight and passenger flows along the physical network.",
-    bullets: ["5 modes: road, rail, IWT, shipping, air", "4 000 global OD centroids", "Resolves trade flows onto transport links", "Passes connectivity changes to the regional model"],
+    detail: "A global multimodal transport model covering five modes: road, rail, inland waterway, maritime, and air. Resolves trade flows onto ~4,000 spatial centroids worldwide, mapping observed and counterfactual freight flows along the physical network.",
+    bullets: ["5 modes: road, rail, IWT, shipping, air", "~4,000 global OD centroids", "Assigns trade flows to least-cost network paths", "Passes connectivity changes to the regional model"],
+    note: "Trade flows are assigned to the network using generalised transport costs — combining distance, travel time, and mode-specific tariffs — via least-cost path algorithms. New infrastructure enters as reductions in link costs or capacity expansions, shifting flows and lowering trade costs between connected regions. These connectivity changes are then passed to the regional model as changes in market access.",
   },
   {
     id: "regional", svgX: 500, svgY: 560,
@@ -84,7 +88,8 @@ const NODES: NodeDef[] = [
     line1: "Quantitative Regional Models",
     line2: "(Mobile Labor, ADM1/2 Regions)",
     detail: "Quantitative spatial equilibrium models with mobile labor at ADM1/ADM2 resolution. Endogenous population sorting driven by wages, amenities, and connectivity — linking national macro shocks to sub-national distributional outcomes.",
-    bullets: ["Mobile labor across regions", "Wage and amenity-driven sorting", "Receives productivity & connectivity shocks", "Exports local welfare to AETHER layer"],
+    bullets: ["Mobile labor across regions", "Wage and amenity-driven population sorting", "Receives productivity & connectivity shocks", "Exports local welfare to AETHER layer"],
+    note: "These models follow the quantitative spatial economics tradition of Redding & Rossi-Hansberg (2017). Workers sort across regions trading off wages against local amenities and commuting costs, while firms locate where productivity and market access are highest. The model produces sub-national distributions of wages, population density, land rents, and welfare — the key layer for assessing distributional impacts of macro-level shocks.",
   },
   {
     id: "aether", svgX: 500, svgY: 720,
@@ -93,6 +98,7 @@ const NODES: NodeDef[] = [
     line2: "(10m Resolution, POI-Enriched)",
     detail: "AETHER (AlphaEarth-POI Enriched Representation Learning for Human-Centered Urban Analysis): 10m-resolution vector embeddings encoding the built environment, demographics, and economic activity for hyper-local welfare extrapolation.",
     bullets: ["10m spatial resolution", "Encodes POIs, built form & socio-demographics", "Hyper-local welfare & price extrapolation", "Can localize sectoral production for CGE/QRM linkages"],
+    note: "Embeddings are trained via contrastive representation learning on multi-source geospatial data: satellite imagery, points of interest, road networks, and census indicators. The resulting feature vectors capture fine-grained variation in the built environment that top-down models cannot resolve. Beyond welfare extrapolation, they can localize sectoral production estimates from the CGE and regional layers, enabling deeper integration across the full model stack.",
   },
 ];
 
@@ -119,7 +125,7 @@ const EDGES: EdgeDef[] = [
     // Transport→Regional: infrastructure / connectivity changes
     labelFwd: ["Infrastructure &", "Connectivity Changes"],
     // Regional→Transport: welfare / population changes affect trade demand
-    labelBck: ["Welfare / Population", "Demand Shifts"] },
+    labelBck: ["Welfare / Population /", "Demand Shifts"] },
   { id: "regional-aether",    from: "regional", to: "aether",
     labelFwd: ["Local Welfare &", "Prices Extrapolation"],
     labelBck: [], labelGap: 50 },
@@ -264,12 +270,15 @@ function DetailPanel({ node, onClose }: { node: NodeDef; onClose: () => void }) 
       <ul className="space-y-3">
         {node.bullets.map(b => (
           <li key={b} className="flex items-start gap-3 text-xs text-white/50">
-            {/* Small filled dot — avoids dropdown-arrow confusion */}
             <span className="w-1.5 h-1.5 rounded-full bg-primary/70 flex-shrink-0 mt-1" />
             {b}
           </li>
         ))}
       </ul>
+
+      <div className="h-px bg-white/8 my-3" />
+
+      <p className="text-xs text-white/35 leading-relaxed italic">{node.note}</p>
     </motion.div>
   );
 }
