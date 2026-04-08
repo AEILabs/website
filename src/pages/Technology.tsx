@@ -51,10 +51,16 @@ export default function Technology() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.9 }}
-          className="px-6 pb-24 max-w-6xl mx-auto"
+          className="px-6 pb-16 max-w-6xl mx-auto"
         >
           <TechFlowchart />
         </motion.section>
+
+        <footer className="pb-8 text-center">
+          <p className="text-[11px] text-white/20 font-body tracking-wide">
+            © 2026 Advanced Economic Intelligence Labs. All rights reserved.
+          </p>
+        </footer>
       </div>
     </>
   );
