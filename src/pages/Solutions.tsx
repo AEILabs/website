@@ -144,7 +144,7 @@ export default function Solutions() {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="text-muted-foreground text-lg max-w-2xl mx-auto font-body leading-relaxed"
         >
-          Five integrated intelligence modules — each solving a distinct
+          Five integrated intelligence solutions — each addressing a distinct
           dimension of global economic analysis, all powered by the same
           unified model stack.
         </motion.p>
