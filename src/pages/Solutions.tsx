@@ -35,7 +35,7 @@ const SOLUTIONS: Solution[] = [
     category: "Infrastructure",
     title: "Global Infrastructure Intelligence",
     description:
-      "Evaluate the economic returns to major infrastructure investments — ports, roads, railways, transport corridors, and intermodal connectivity — at regional and global scales. Simulate how connectivity improvements reshape international trade flows, sectoral productivity, welfare distribution, and advanced indicators including food security and inter-regional inequality. Compare alternative project designs through rigorous counterfactual scenario analysis.",
+      "Evaluate the economic returns to major infrastructure investments — ports, bridges, tunnels, roads, railways, transport corridors, and intermodal connectivity — at regional and global scales. Simulate how connectivity improvements reshape international trade flows, sectoral productivity, welfare distribution, and advanced indicators including food security and inter-regional inequality. Compare alternative project designs through rigorous counterfactual scenario analysis.",
     bullets: [
       "Quantify the trade and productivity gains from proposed infrastructure corridors and connectivity projects",
       "Compare alternative project locations and specifications through counterfactual investment simulation",
@@ -241,7 +241,7 @@ export default function Solutions() {
       {/* ── Footer ───────────────────────────────────────────── */}
       <footer className="pb-8 pt-4 text-center border-t border-white/5">
         <p className="text-[11px] text-white/40 font-body tracking-wide">
-          © Advanced Economic Intelligence 2026
+          © 2026 Advanced Economic Intelligence
         </p>
       </footer>
     </div>
