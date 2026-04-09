@@ -145,7 +145,7 @@ export default function Solutions() {
           className="text-muted-foreground text-lg max-w-2xl mx-auto font-body leading-relaxed"
         >
           Five integrated intelligence solutions — each addressing a distinct
-          dimension of global economic analysis, all powered by the same
+          dimension of global economic analysis — all powered by the same
           unified model stack.
         </motion.p>
       </section>
