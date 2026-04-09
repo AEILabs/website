@@ -42,7 +42,7 @@ export default function ComingSoon({ title }: ComingSoonProps) {
             transition={{ duration: 0.8, delay: 0.7 }}
             className="text-muted-foreground text-lg max-w-md mx-auto font-body leading-relaxed"
           >
-            This section is under construction. Check back soon.
+            This section is under construction.
           </motion.p>
         </div>
 
