@@ -201,7 +201,7 @@ export default function Solutions() {
               >
                 <h2
                   className="font-display font-light text-3xl md:text-5xl leading-tight"
-                  style={{ color: "rgb(224, 227, 231)", textShadow: "0 2px 16px rgba(0,0,0,0.75)" }}
+                  style={{ color: "rgb(231, 234, 239)", textShadow: "0 2px 16px rgba(0,0,0,0.75)" }}
                 >
                   {sol.title}
                 </h2>
@@ -241,7 +241,7 @@ export default function Solutions() {
       {/* ── Footer ───────────────────────────────────────────── */}
       <footer className="pb-8 pt-4 text-center border-t border-white/5">
         <p className="text-[11px] text-white/40 font-body tracking-wide">
-          © 2026 Advanced Economic Intelligence Labs
+          © 2026 Advanced Economic Intelligence
         </p>
       </footer>
     </div>
