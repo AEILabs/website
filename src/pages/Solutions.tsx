@@ -200,8 +200,8 @@ export default function Solutions() {
                 className="absolute bottom-0 left-0 pb-10 pl-8 md:pl-12 pr-8 md:pr-1/2"
               >
                 <h2
-                  className="font-display font-light text-3xl md:text-5xl text-white leading-tight"
-                  style={{ textShadow: "0 2px 16px rgba(0,0,0,0.75)" }}
+                  className="font-display font-light text-3xl md:text-5xl leading-tight"
+                  style={{ color: "rgb(221, 226, 231)", textShadow: "0 2px 16px rgba(0,0,0,0.75)" }}
                 >
                   {sol.title}
                 </h2>
