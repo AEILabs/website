@@ -54,7 +54,7 @@ export default function HeroContent() {
           className="flex items-center justify-center gap-4 pointer-events-auto"
         >
           <Link to="/solutions" className="px-8 py-3 font-display font-medium text-sm rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200 shadow-lg shadow-primary/20">
-            Our Solutions {/* Explore Platform */}
+            Explore Solutions {/* Explore Platform */}
           </Link>
           <Link to="/technology" className="px-8 py-3 font-display font-medium text-sm rounded-lg border border-border text-foreground hover:border-primary/40 hover:text-primary transition-colors duration-200">
             Learn More
