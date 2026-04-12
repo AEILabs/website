@@ -5,8 +5,8 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  // Base path for GitHub Pages project deployment at /AEILabs/
-  base: mode === "production" ? "/AEILabs/" : "/",
+  // Custom domain (aeilabs.xyz) — site lives at root
+  base: "/",
   server: {
     host: "::",
     port: parseInt(process.env.PORT || '8080'),

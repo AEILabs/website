@@ -7,8 +7,8 @@
       // SPA redirect for GitHub Pages
       // When GH Pages 404s on a client-side route, this page encodes the path
       // into a query string and redirects to the app root, which decodes it.
-      // pathSegmentsToKeep=1 because the site lives under /AEILabs/ (project page).
-      var pathSegmentsToKeep = 1;
+      // pathSegmentsToKeep=0 because the site is at the apex domain root (aeilabs.xyz).
+      var pathSegmentsToKeep = 0;
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.host +
