@@ -95,7 +95,7 @@ function OceanSphere() {
   return (
     <mesh>
       <sphereGeometry args={[2, 64, 64]} />
-      <meshPhongMaterial color="#0a1628" shininess={15} specular="#1a3a6a" />
+      <meshPhongMaterial color="#050d1a" shininess={10} specular="#0f2040" />
     </mesh>
   );
 }
@@ -104,28 +104,44 @@ function LandSphere({ texture }: { texture: THREE.CanvasTexture }) {
   return (
     <mesh>
       <sphereGeometry args={[2.001, 64, 64]} />
-      <meshPhongMaterial
+      <meshBasicMaterial
         map={texture}
         transparent
         alphaTest={0.05}
-        shininess={5}
-        specular="#0a1a0a"
       />
     </mesh>
   );
 }
 
 function AtmosphereGlow() {
+  const layers = useMemo(() => {
+    const count = 80;
+    const minR = 2.06;
+    const maxR = 2.65;
+    const peakOpacity = 0.032;
+    return Array.from({ length: count }, (_, i) => {
+      const t = i / (count - 1);
+      const r = minR + (maxR - minR) * t;
+      const opacity = peakOpacity * Math.exp(-6 * t);
+      return { r, opacity };
+    });
+  }, []);
+
   return (
-    <mesh>
-      <sphereGeometry args={[2.15, 64, 64]} />
-      <meshBasicMaterial
-        color={PRIMARY_BLUE}
-        transparent
-        opacity={0.04}
-        side={THREE.BackSide}
-      />
-    </mesh>
+    <>
+      {layers.map(({ r, opacity }) => (
+        <mesh key={r}>
+          <sphereGeometry args={[r, 48, 48]} />
+          <meshBasicMaterial
+            color={PRIMARY_BLUE}
+            transparent
+            opacity={opacity}
+            side={THREE.BackSide}
+            depthWrite={false}
+          />
+        </mesh>
+      ))}
+    </>
   );
 }
 
@@ -254,7 +270,7 @@ function PortMarkers({ features }: { features: PortFeature[] }) {
 
     features.forEach((f, i) => {
       const [lon, lat] = f.geometry.coordinates;
-      dummy.position.copy(latLonToVec3(lat, lon, 2.022));
+      dummy.position.copy(latLonToVec3(lat, lon, 2.003));
       dummy.updateMatrix();
       iMesh.setMatrixAt(i, dummy.matrix);
     });
@@ -284,7 +300,7 @@ function CityMarkers({ features }: { features: CityFeature[] }) {
     features.forEach((f, i) => {
       const [lon, lat] = f.geometry.coordinates;
       const scale = 0.004 + (f.properties.rank_max / 20) * 0.006;
-      dummy.position.copy(latLonToVec3(lat, lon, 2.026));
+      dummy.position.copy(latLonToVec3(lat, lon, 2.004));
       dummy.scale.setScalar(scale);
       dummy.updateMatrix();
       iMesh.setMatrixAt(i, dummy.matrix);
@@ -413,7 +429,7 @@ function FallbackGlobe() {
 
   useFrame(({ clock }) => {
     if (groupRef.current)
-      groupRef.current.rotation.y = clock.getElapsedTime() * 0.05;
+      groupRef.current.rotation.y = clock.getElapsedTime() * 0.05 - 2.97;
   });
 
   const lines = useMemo(() => {
@@ -434,7 +450,7 @@ function FallbackGlobe() {
     <group ref={groupRef}>
       <mesh>
         <sphereGeometry args={[2, 64, 64]} />
-        <meshPhongMaterial color="#0a1628" shininess={15} specular="#1a3a6a" />
+        <meshPhongMaterial color="#050d1a" shininess={10} specular="#0f2040" />
       </mesh>
       <mesh>
         <sphereGeometry args={[2.15, 64, 64]} />
@@ -468,7 +484,7 @@ function GlobeScene({ countries, ports, cities, routes }: GlobeSceneProps) {
 
   useFrame(({ clock }) => {
     if (groupRef.current)
-      groupRef.current.rotation.y = clock.getElapsedTime() * 0.05;
+      groupRef.current.rotation.y = clock.getElapsedTime() * 0.05 - 2.97;
   });
 
   const landTexture = useMemo(
@@ -482,7 +498,7 @@ function GlobeScene({ countries, ports, cities, routes }: GlobeSceneProps) {
       <LandSphere texture={landTexture} />
       <AtmosphereGlow />
       <WireframeGrid />
-      <CountryBorders features={countries.features} />
+      {/* <CountryBorders features={countries.features} /> */}
       {routes.features.length > 0 && (
         <MaritimeRoutes features={routes.features} />
       )}
@@ -504,7 +520,7 @@ export default function Globe() {
   return (
     <div className="absolute inset-0 w-full h-full">
       <Canvas
-        camera={{ position: [0, 1.5, 5], fov: 45 }}
+        camera={{ position: [0, 2.4, 5], fov: 43 }}
         gl={{ antialias: true, alpha: true }}
         style={{ background: "transparent" }}
       >
@@ -524,6 +540,7 @@ export default function Globe() {
           enableZoom={false}
           enablePan={false}
           autoRotate={false}
+          target={[0, 0.08, 0]}
           minPolarAngle={Math.PI * 0.3}
           maxPolarAngle={Math.PI * 0.7}
         />

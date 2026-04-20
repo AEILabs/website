@@ -5,9 +5,11 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // Custom domain (aeilabs.xyz) — site lives at root
+  base: "/",
   server: {
     host: "::",
-    port: 8080,
+    port: parseInt(process.env.PORT || '8080'),
     hmr: {
       overlay: false,
     },
