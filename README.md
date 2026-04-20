@@ -1,6 +1,6 @@
 # AEI Labs — Advanced Economic Intelligence
 
-Public website for **AEI Labs** (Advanced Economic Intelligence), a startup building **global spatial economic intelligence**: linking global trade and transport network models to national computable general equilibrium (CGE) and quantitative regional models, with hyper-local extrapolation and AI-assisted interfaces. The hero experience is an interactive 3D globe; inner pages present platform solutions, architecture, and a placeholder company section.
+Public website for **AEI Labs** (Advanced Economic Intelligence), a startup building **global spatial economic intelligence**: linking global trade and transport network models to national computable general equilibrium (CGE) and quantitative regional models, with hyper-local extrapolation and AI-assisted interfaces.
 
 Contact: [contact@aeilabs.xyz](mailto:contact@aeilabs.xyz). The production site is intended for the [aeilabs.xyz](https://aeilabs.xyz) domain (see `vite.config.ts`).
 
